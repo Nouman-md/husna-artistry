@@ -42,7 +42,7 @@ app.use(xss()); // strips/escapes script-like input — basic XSS protection
 app.use(cookieParser());
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 10000,
   message: "Too many requests. Please try again later."
 });
 
@@ -51,7 +51,7 @@ app.use(limiter);
 // General API rate limiting (separate, stricter limiter is applied to admin login)
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 300,
+  max: 10000,
   message: { message: "Too many requests. Please slow down and try again shortly." },
 });
 app.use("/api", apiLimiter);
