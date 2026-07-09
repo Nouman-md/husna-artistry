@@ -75,12 +75,11 @@ app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminRoutes);
 // Serve admin frontend
-app.use("/admin", express.static(path.join(__dirname, "..", "admin")));
+app.use("/admin", express.static(path.join(__dirname, "..", "public", "admin")));
 
 app.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "admin", "login.html"));
+  res.sendFile(path.join(__dirname, "..", "public", "admin", "login.html"));
 });
-
 /* ---------- 404 + error handling ---------- */
 app.use("/api", (req, res) => {
   res.status(404).json({ message: "API route not found." });
