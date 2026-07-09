@@ -85,7 +85,9 @@ app.get("/admin", (req, res) => {
 app.use("/api", (req, res) => {
   res.status(404).json({ message: "API route not found." });
 });
-
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+});
 // Any other unmatched route on the customer site → serve the SPA-style 404 page
 app.get("*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "..", "public", "404.html"));
