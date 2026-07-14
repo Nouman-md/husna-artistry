@@ -100,7 +100,7 @@ router.put("/products/:id", upload.array("images", 6), async (req, res) => {
       product.sizes = req.body.sizes.split(",").map((s) => s.trim()).filter(Boolean);
     }
     if (req.files && req.files.length) {
-      product.images = req.files.map((f) => "/uploads/" + f.filename);
+      product.images = req.files.map(f => f.path);
     }
 
     await product.save();
