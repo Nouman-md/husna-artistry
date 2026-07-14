@@ -60,7 +60,7 @@ router.post("/products", upload.array("images", 6), async (req, res) => {
       return res.status(400).json({ message: "Please fill in every required field." });
     }
 
-    const images = (req.files || []).map((f) => "/uploads/" + f.filename);
+    const images = (req.files || []).map(f => f.path);
     const product = await Product.create({
       name,
       category,
